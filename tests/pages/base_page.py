@@ -48,7 +48,10 @@ class BasePage:
         wait.until(EC.presence_of_element_located((By.TAG_NAME, "body")))
 
         # Ожидаем, пока страница не загрузится полностью
-        wait.until(lambda driver: driver.execute_script("return document.readyState") == "complete")
+        wait.until(
+            lambda driver: driver.execute_script("return document.readyState")
+            == "complete"
+        )
 
     def find_and_click_element(self, locator: tuple, timeout=10):
         """
@@ -103,7 +106,7 @@ class BasePage:
         """
         current_url = self.get_current_url()
         assert (
-                expected_url == current_url
+            expected_url == current_url
         ), f"Ожидали url {expected_url}, получили {current_url}"
 
     def find_and_send(self, locator: tuple, key: str, timeout=10):
@@ -147,14 +150,14 @@ class BasePage:
     def generate_password(self):
         fake = Faker()
         # Генерация 8 случайных цифр
-        digits = ''.join([str(random.randint(0, 9)) for _ in range(8)])
+        digits = "".join([str(random.randint(0, 9)) for _ in range(8)])
         # Генерация одной строчной и одной заглавной буквы
         lowercase_letter = fake.random_lowercase_letter()
         uppercase_letter = fake.random_uppercase_letter()
         # Специальный символ
-        special_char = '!'
+        special_char = "!"
         # Формирование пароля
         password = digits + lowercase_letter + uppercase_letter + special_char
         # Перемешиваем символы в пароле для большей случайности
-        password = ''.join(random.sample(password, len(password)))
+        password = "".join(random.sample(password, len(password)))
         return password
