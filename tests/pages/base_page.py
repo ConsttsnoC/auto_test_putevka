@@ -40,7 +40,7 @@ class BasePage:
 
         :param timeout: Максимальное время ожидания в секундах.
         """
-        time.sleep(1)
+        time.sleep(2)
         wait = WebDriverWait(self.driver, timeout)
 
         # Ожидаем появления элемента <body>

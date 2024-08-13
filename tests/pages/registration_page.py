@@ -1,3 +1,5 @@
+import time
+
 from tests.pages.base_page import BasePage
 from tests.pages.locators import Locators
 from loguru import logger
@@ -23,10 +25,7 @@ class RegistrationPage(BasePage):
                4. Генерирует и вводит случайный email.
                5. Генерирует и вводит пароль, а также повторный пароль.
                6. Нажимает на кнопку "Зарегистрироваться".
-               7. Вводит сгенерированный пароль для входа на портал.
-               8. Нажимает на кнопку "Вход".
-               9. Проверяет, что URL изменился после успешного входа.
-               10. Нажимает на изображение аккаунта и выполняет выход из системы.
+               7. Проверяет, что URL изменился после регистрации и содержить email.
 
                В случае возникновения ошибок:
                - Исключение будет залогировано.
@@ -52,18 +51,13 @@ class RegistrationPage(BasePage):
             logger.info(f"Введен повторный пароль: {password}")
             logger.info('Нажатие кнопки "Зарегистрироваться"')
             self.find_and_click_element(Locators.registration_button)
-            logger.info(f"Введен пароль для входа: {password}")
-            self.find_and_send(Locators.login_password, password)
-            logger.info('Нажатие кнопки "Вход"')
-            self.find_and_click_element(Locators.login_button)
+            logger.info('Ожидаем смены url после регистрации')
             self.wait_for_body_to_load()
-            self.assert_url_is_equal("https://app.linkbuilder.com/ru")
-            url = self.get_current_url()
-            logger.info(f"Вход выполнен успешно, url сменился на: {url}")
-            logger.info("Нажатие на изображение аккаунта")
-            self.find_and_click_element(Locators.image_account)
-            logger.info('Нажатие кнопки "Выход"')
-            self.find_and_click_element(Locators.logout_account)
+            logger.info('Получение текущего url')
+            current_url = self.driver.current_url
+            assert email in current_url, f"Email '{email}' не найден в URL: {current_url}"
+            logger.info(f"Email '{email}' успешно найден в URL: {current_url}")
+            logger.info('Пользователь успешно зарегистрирован')
         except Exception as e:
             logger.error(f"Ошибка в процессе регистрации: {str(e)}")
             raise

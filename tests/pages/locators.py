@@ -46,3 +46,4 @@ class Locators:
         By.CSS_SELECTOR,
         "#app-wrapper > header > div > div.site-header__user > div.site-header__user-profile > div > footer > a > span",
     )
+    text_email = (By.CSS_SELECTOR, '#__nuxt > div > div.login-layout__main > section > div > form > div.auth-input')
