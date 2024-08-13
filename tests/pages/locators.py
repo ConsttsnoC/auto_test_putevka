@@ -30,20 +30,4 @@ class Locators:
         By.CSS_SELECTOR,
         "#__nuxt > div > div.login-layout__main > section > div > form > button",
     )
-    login_password = (
-        By.CSS_SELECTOR,
-        "#__nuxt > div > div.login-layout__main > section > div > form > div:nth-child(2) > div > input",
-    )
-    login_button = (
-        By.CSS_SELECTOR,
-        "#__nuxt > div > div.login-layout__main > section > div > form > button",
-    )
-    image_account = (
-        By.CSS_SELECTOR,
-        "#app-wrapper > header > div > div.site-header__user > div.site-header__user-profile > button",
-    )
-    logout_account = (
-        By.CSS_SELECTOR,
-        "#app-wrapper > header > div > div.site-header__user > div.site-header__user-profile > div > footer > a > span",
-    )
     text_email = (By.CSS_SELECTOR, '#__nuxt > div > div.login-layout__main > section > div > form > div.auth-input')
