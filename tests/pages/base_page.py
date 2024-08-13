@@ -1,4 +1,3 @@
-import base64
 import random
 import time
 from selenium.webdriver.remote.webdriver import WebDriver
